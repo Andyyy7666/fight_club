@@ -300,20 +300,3 @@ AddEventHandler("onResourceStop", function(resourceName)
         lib.hideTextUI()
     end
 end)
-
-
-RegisterCommand("opp", function(source, args, rawCommand)
-    local lvl = tonumber(args[1])
-    local model = opps[lvl][math.random(1, #opps[lvl])]
-    while not HasModelLoaded(model) do
-        RequestModel(model)
-        Wait(100)
-    end
-    opp = CreatePed(4, model, pedCoords.x, pedCoords.y, pedCoords.z, 0.0, true, false)
-    SetPedCombatAbility(opp, 3)
-    SetPedCombatAttributes(opp, 46, true)
-    SetPedCombatMovement(ped, 3)
-    SetPedCombatRange(opp, 2)
-    SetEntityMaxHealth(opp, oppHealth[lvl])
-    SetEntityHealth(opp, oppHealth[lvl])
-end, false)
